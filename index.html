@@ -12,8 +12,18 @@
 
 <body>
 
-	<form id="searchForm">
-    <!-- TODO: add form elements -->
+	<form id="searchForm" method="GET">
+
+		<label><input type="q" name="q"/></label>
+		<label>Google<input type="radio" name="q" value="https://www.google.com/?q="/>
+		<label>DuckDuckGo<input type="radio" name="q" value="https://www.duckduckgo.com/?q="/>
+		<label>Bing<input type="radio" name="q" value="https://www.bing.com/?q="/>
+		<label>Ask<input type="radio" name="q" value="https://www.ask.com/?q="/>
+
+		<button>Go!</button>
+
+
+
 	</form>
 
 </body>
