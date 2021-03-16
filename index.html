@@ -3,27 +3,74 @@
 <head>
 	<meta charset="utf-8">
 	<script>
-		// TODO: create a handler
-    window.addEventListener("load", function(){
-        // TODO: register the handler
-    });
+	function setSearchEngine() {
+  const actions = {
+    google: 'https://www.google.com/search',
+    duckduckgo: 'https://duckduckgo.com/',
+    bing: 'https://www.bing.com/search',
+    ask: 'https://www.ask.com/web',
+  };
+
+  const form = document.getElementById('searchForm');
+  const selectedEngine = document.querySelector('input[name=engine]:checked');
+  const action = actions[selectedEngine.value];
+
+  form.setAttribute('action', action);
+}
+window.addEventListener('load', function () {
+  
+  let button = document.getElementById('submit');
+  button.addEventListener('click', function (event) {
+    const search = document.getElementById('q');
+    const selectedEngine = document.querySelector('input[name=engine]:checked');
+    
+    if (search.value === '' || selectedEngine.value === null) {
+      alert('Select an engine and type something in the input search');
+      preventDefault();
+    } else {
+      const form = document.getElementById('searchForm');
+      form.addEventListener('submit', setSearchEngine);
+    }
+  });
+  
+  let form = document.getElementById('searchForm');  
+  form.addEventListener('submit', function (event) {
+    const search = document.getElementById('q');
+    debugger;
+    const selectedEngine = document.querySelector('input[name=engine]:checked');
+    if (search.value === '' || selectedEngine.value === '') {      
+      preventDefault();
+    } else {
+      const form = document.getElementById('searchForm');
+      form.addEventListener('submit', setSearchEngine);
+    }
+  });
+
+});
 	</script>
 </head>
 
 <body>
 
-	<form id="searchForm" method="GET">
-
-		<label><input type="q" name="q"/></label>
-		<label>Google<input type="radio" name="q" value="https://www.google.com/?q="/>
-		<label>DuckDuckGo<input type="radio" name="q" value="https://www.duckduckgo.com/?q="/>
-		<label>Bing<input type="radio" name="q" value="https://www.bing.com/?q="/>
-		<label>Ask<input type="radio" name="q" value="https://www.ask.com/?q="/>
-
-		<button>Go!</button>
-
-
-
-	</form>
+	<form id="searchForm">
+		<section class="main">
+		  <section class="main-element">
+			<h2 class="main__title">LaunchCode Search</h2>
+		  </section>
+		<section class="main-search">        
+		  <input type="text" class="input shadow-5" name="q" id="q" placeholder="Search...">      
+		</section>
+		<section class="main-element">
+		  <div class="radios">
+			<input type="radio" name="engine" value="google" id="google" checked>Google
+			<input type="radio" name="engine" value="duckduckgo" id="duckduckgo"> DuckDuckGo
+			<input type="radio" name="engine" value="bing" id="bing">Bing
+			<input type="radio" name="engine" value="ask" id="ask">Ask
+		  </div>
+		  <input type="submit" class="button" value="Search" id="submit"></input>
+		</section>
+		</section>
+		
+  </form>  
 
 </body>
